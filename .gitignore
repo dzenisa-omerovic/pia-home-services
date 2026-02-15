@@ -22,3 +22,23 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
+
+## Runtime upload files (do not commit)
+public/images/livewire-tmp/
+public/images/services/[0-9]*.jpg
+public/images/services/[0-9]*.jpeg
+public/images/services/[0-9]*.png
+public/images/services/[0-9]*.webp
+public/images/services/thumbnails/[0-9]*.jpg
+public/images/services/thumbnails/[0-9]*.jpeg
+public/images/services/thumbnails/[0-9]*.png
+public/images/services/thumbnails/[0-9]*.webp
+public/images/sproviders/[0-9]*.jpg
+public/images/sproviders/[0-9]*.jpeg
+public/images/sproviders/[0-9]*.png
+public/images/sproviders/[0-9]*.webp
+public/images/categories/[0-9]*.jpg
+public/images/categories/[0-9]*.jpeg
+public/images/categories/[0-9]*.png
+public/images/categories/[0-9]*.webp
+!public/images/sproviders/123.png
