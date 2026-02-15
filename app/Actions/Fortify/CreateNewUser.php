@@ -3,6 +3,7 @@
 namespace App\Actions\Fortify;
 
 use App\Models\ServiceProvider;
+use App\Models\ServiceCategory;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -25,6 +26,9 @@ class CreateNewUser implements CreatesNewUsers
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
             'phone' => ['required'],
+            'registeras' => ['required', 'in:CST,SVP'],
+            'interests' => ['nullable', 'array'],
+            'interests.*' => ['integer', 'exists:service_categories,id'],
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
@@ -42,8 +46,15 @@ class CreateNewUser implements CreatesNewUsers
         if($registeras === 'SVP')
         {
             ServiceProvider::create([
-                'user_id' => $user->id
+                'user_id' => $user->id,
+                'approval_status' => 'pending'
             ]);
+        }
+        else {
+            $interests = $input['interests'] ?? [];
+            if (!empty($interests)) {
+                $user->interests()->sync($interests);
+            }
         }
 
 

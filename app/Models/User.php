@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\ServiceCategory;
 
 class User extends Authenticatable
 {
@@ -65,5 +66,16 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function interests()
+    {
+        return $this->belongsToMany(ServiceCategory::class, 'customer_interests', 'user_id', 'service_category_id')
+            ->withTimestamps();
+    }
+
+    public function passwordHistories()
+    {
+        return $this->hasMany(PasswordHistory::class);
     }
 }

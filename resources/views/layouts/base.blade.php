@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>SurfsideMedia - Online Service Provider for your House Needs</title>
+    <title>Home Services - Online Service Provider for your House Needs</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -14,6 +14,124 @@
     <link href="{{ asset('assets/css/dtb/jquery.dataTables.min.css') }}" rel="stylesheet" media="screen">
     <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" media="screen">
     <link href="{{ asset('assets/css/toastr.min.css') }}" rel="stylesheet" media="screen">        
+    <style>
+        .footer-cats li,
+        .footer-cats li a {
+            font-size: 15px;
+        }
+        .contact_footer {
+            font-size: 16px;
+        }
+        .footer-contact {
+            text-align: right;
+            border-left: 1px solid #ddd;
+        }
+        .footer-contact .contact_footer li {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 8px;
+        }
+        .footer-contact .contact_footer li a {
+            text-align: right;
+        }
+        .footer-contact .social {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+            padding-right: 0;
+        }
+        .footer-contact .social li {
+            margin-right: 0;
+            width: auto;
+            min-width: 0;
+        }
+        .footer-contact .social li span {
+            margin-right: 0;
+        }
+        .change-password-form {
+            background: #fafafa;
+            border: 1px solid #e6e6e6;
+            border-radius: 6px;
+            padding: 16px 18px;
+        }
+        .change-password-header h4 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
+        .change-password-header p {
+            margin: 6px 0 12px;
+            color: #777;
+            font-size: 13px;
+        }
+        .change-password-form .form-group {
+            margin-bottom: 12px;
+        }
+        .change-password-form .form-control {
+            height: 38px;
+            border-radius: 4px;
+        }
+        .change-password-form .form-control:focus {
+            border-color: #46b8da;
+            box-shadow: 0 0 0 2px rgba(70, 184, 218, 0.2);
+        }
+        .request-actions-cell {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .request-actions {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        .request-actions a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border: 0;
+            outline: 0;
+            background: transparent;
+            box-shadow: none;
+            text-decoration: none;
+        }
+        .request-actions a:hover,
+        .request-actions a:focus {
+            text-decoration: none;
+        }
+        .request-actions i {
+            line-height: 1;
+        }
+        .customer-profile-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: stretch;
+        }
+        .customer-profile-photo {
+            display: flex;
+        }
+        .customer-profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .customer-profile-details {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        .customer-profile-cta {
+            position: absolute;
+            right: 8px;
+            bottom: 0;
+        }
+        
+    </style>
     <script type="text/javascript" src="{{ asset('assets/js/jquery.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/jquery-ui.1.10.4.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/toastr.min.js') }}"></script>
@@ -27,18 +145,16 @@
                 <div class="row">
                     <div class="col-md-6">
                         <ul class="visible-md visible-lg text-left">
-                            <li><a href="tel:+911234567890"><i class="fa fa-phone"></i> +91-1234567890</a></li>
-                            <li><a href="mailto:contact@surfsidemedia.in"><i class="fa fa-envelope"></i>
-                                    contact@surfsidemedia.in</a></li>
-                        </ul>
-                        <ul class="visible-xs visible-sm">
-                            <li class="text-left"><a href="tel:+911234567890"><i class="fa fa-phone"></i>
-                                    +91-1234567890</a></li>
-                            <li class="text-right"><a href="index.php/changelocation.html"><i
-                                        class="fa fa-map-marker"></i> Faridabad, Haryana</a></li>
+                            <li><a href="tel:+3816123456"><i class="fa fa-phone"></i> +3816123456</a></li>
+                            <li><a href="mailto:contact@homeservices.rs"><i class="fa fa-envelope"></i>
+                                    contact@homeservices.rs</a></li>
                         </ul>
                     </div>
-                    @livewire('location-component')
+                    <div class="col-md-6">
+                        <ul class="visible-md visible-lg text-right">
+                            <li><a href="#"><i class="fa fa-map-marker"></i> Tutin, Serbia</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -49,174 +165,145 @@
 
                 <ul class="collapse">
                     <li class="title">
-                        <a href="/"><img src="{{ asset('images/logo.png') }}"></a>
+                        <a href="/"><img src="{{ asset('images/logo1.png') }}"></a>
                     </li>
-                    <li>
-                        <a href="{{route('home.service_categories')}}">Service Categories</a>
-                    </li>
-                    {{--<li> <a href="javascript:void(0);">Air Conditioners</a>
-                        <ul class="drop-down one-column hover-fade">
-                            <li><a href="service-details/ac-wet-servicing.html">Wet Servicing</a></li>
-                            <li><a href="service-details/ac-dry-servicing.html">Dry Servicing</a></li>
-                            <li><a href="service-details/ac-installation.html">Installation</a></li>
-                            <li><a href="service-details/ac-uninstallation.html">Uninstallation</a></li>
-                            <li><a href="service-details/ac-gas-top-up.html">Gas Top Up</a></li>
-                            <li><a href="service-details/ac-gas-refill.html">Gas Refill</a></li>
-                            <li><a href="service-details/ac-repair.html">Repair</a></li>
-                        </ul>
-                    </li>--}}
-                    <li> <a href="#">Appliances</a>
-                        <ul class="drop-down one-column hover-fade">
-                            <li><a href="servicesbycategory/11.html">Computer Repair</a></li>
-                            <li><a href="servicesbycategory/12.html">TV</a></li>
-                            <li><a href="servicesbycategory/1.html">AC</a></li>
-                            <li><a href="servicesbycategory/14.html">Geyser</a></li>
-                            <li><a href="servicesbycategory/21.html">Washing Machine</a></li>
-                            <li><a href="servicesbycategory/22.html">Microwave Oven</a></li>
-                            <li><a href="servicesbycategory/9.html">Chimney and Hob</a></li>
-                            <li><a href="servicesbycategory/10.html">Water Purifier</a></li>
-                            <li><a href="servicesbycategory/13.html">Refrigerator</a></li>
-                        </ul>
-                    </li>
-                    <li> <a href="#">Home Needs</a>
-                        <ul class="drop-down one-column hover-fade">
-                            <li><a href="servicesbycategory/19.html">Laundry</a></li>
-                            <li><a href="servicesbycategory/4.html">Electrical</a></li>
-                            <li><a href="servicesbycategory/8.html">Pest Control</a></li>
-                            <li><a href="servicesbycategory/7.html">Carpentry</a></li>
-                            <li><a href="servicesbycategory/3.html">Plumbing </a></li>
-                            <li><a href="servicesbycategory/20.html">Painting</a></li>
-                            <li><a href="servicesbycategory/17.html">Movers &amp; Packers</a></li>
-                            <li><a href="servicesbycategory/5.html">Shower Filters </a></li>
-                        </ul>
-                    </li>
-                    <li> <a href="#">Home Cleaning</a>
-                        <ul class="drop-down one-column hover-fade">
-                            <li><a href="service-details/bedroom-deep-cleaning.html">Bedroom Deep Cleaning</a></li>
-                            <li><a href="service-details/overhead-water-storage.html">Overhead Water Storage </a></li>
-                            <li><a href="/service-details/tank-cleaning">Tank Cleaning</a></li>
-                            <li><a href="service-details/underground-sump-cleaning.html">Underground Sump Cleaning</a>
+                    @auth
+                        @if(Auth::user()->utype !== 'ADM')
+                            <li>
+                                <a href="{{route('home.service_categories')}}">Service categories</a>
                             </li>
-                            <li><a href="service-details/dining-chair-shampooing.html">Dining Chair Shampooing </a></li>
-                            <li><a href="service-details/office-chair-shampooing.html">Office Chair Shampooing</a></li>
-                            <li><a href="service-details/home-deep-cleaning.html">Home Deep Cleaning </a></li>
-                            <li><a href="service-details/carpet-shampooing.html">Carpet Shampooing </a></li>
-                            <li><a href="service-details/fabric-sofa-shampooing.html">Fabric Sofa Shampooing</a></li>
-                            <li><a href="service-details/bathroom-deep-cleaning.html">Bathroom Deep Cleaning</a></li>
-                            <li><a href="service-details/floor-scrubbing-polishing.html">Floor Scrubbing &amp; Polishing
-                                </a></li>
-                            <li><a href="service-details/mattress-shampooing.html">Mattress Shampooing </a></li>
-                            <li><a href="service-details/kitchen-deep-cleaning.html">Kitchen Deep Cleaning </a></li>
-                        </ul>
-                    </li>
-                    <li> <a href="#">Special Services</a>
-                        <ul class="drop-down one-column hover-fade">
-                            <li><a href="servicesbycategory/16.html">Document Services</a></li>
-                            <li><a href="servicesbycategory/15.html">Cars &amp; Bikes</a></li>
-                            <li><a href="servicesbycategory/17.html">Movers &amp; Packers </a></li>
-                            <li><a href="servicesbycategory/18.html">Home Automation</a></li>
-                        </ul>
-                    </li>
-                    @if(Route::has('login'))
-                        @auth
-                            @if(Auth::user()->utype==='ADM')
-                                <li class="login-form"> <a href="#" title="Register">My Account (Admin)</a>
-                                    <ul class="drop-down one-column hover-fade">
-                                        <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                                        <li><a href="{{ route('admin.service_categories') }}">Service Categories</a></li>
-                                        <li><a href="{{ route('admin.all_services') }}">All Services</a></li>
-                                        <li><a href="{{ route('admin.slider') }}">Manage Slider</a></li>
-                                        <li><a href="{{ route('admin.contacts') }}">All Contacts</a></li>
-                                        <li><a href="{{ route('admin.service_providers') }}">All Service Providers</a></li>
-                                        <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
-                                    </ul>
-                                </li>
-                            @elseif(Auth::user()->utype==='SVP')
-                                <li class="login-form"> <a href="#" title="Register">My Account (S Provider)</a>
-                                    <ul class="drop-down one-column hover-fade">
-                                        <li><a href="{{ route('sprovider.dashboard') }}">Dashboard</a></li>
+                            <li>
+                                <a href="{{ route('home.services') }}">Services</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('home.service_providers') }}">Service providers</a>
+                            </li>
+                        @endif
+                        @if(Auth::user()->utype === 'CST')
+                            <li>
+                                <a href="{{ route('customer.requests') }}">My requests</a>
+                            </li>
+                        @endif
+                        @if(Auth::user()->utype==='ADM')
+                            <li class="login-form"> <a href="{{ route('admin.customers') }}" title="Admin">Admin</a>
+                                <ul class="drop-down one-column hover-fade">
+                                    <li><a href="{{ route('admin.service_categories') }}">Service categories</a></li>
+                                    <li><a href="{{ route('admin.all_services') }}">All services</a></li>
+                                    <li><a href="{{ route('admin.slider') }}">Manage slider</a></li>
+                                    <li><a href="{{ route('admin.contacts') }}">All contacts</a></li>
+                                    <li><a href="{{ route('admin.customers') }}">Customers</a></li>
+                                    <li><a href="{{ route('admin.service_providers') }}">All service providers</a></li>
+                                    <li><a href="{{ route('admin.security_settings') }}">Security settings</a></li>
+                                    <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
+                                </ul>
+                            </li>
+                        @elseif(Auth::user()->utype==='SVP')
+                            @php
+                                $svProvider = \App\Models\ServiceProvider::where('user_id', Auth::id())->first();
+                                $svApproval = $svProvider?->approval_status;
+                                $svCredits = (int) ($svProvider?->promotion_credits ?? 0);
+                            @endphp
+                            <li>
+                                <a href="{{ route('sprovider.services') }}" title="Free promotions">
+                                    <i class="fa fa-bullhorn"></i> Free promotions: <span data-promotion-credits>{{ $svCredits }}</span>
+                                </a>
+                            </li>
+                            <li class="login-form"> <a href="#" title="Account">{{ Auth::user()->name }}</a>
+                                <ul class="drop-down one-column hover-fade">
+                                    @if($svApproval === 'approved')
+                                        <li><a href="{{ route('sprovider.services') }}">Promotion credits: <span data-promotion-credits>{{ $svCredits }}</span></a></li>
                                         <li><a href="{{ route('sprovider.profile') }}">Profile</a></li>
-                                        <li><a href="{{ route('sprovider.services') }}">All Services</a></li>
-                                        <li><a href="{{ route('sprovider.add_service') }}">Add Service</a></li>
-                                        <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
-                                    </ul>
-                                </li>
-                            @else
-                                <li class="login-form"> <a href="#" title="Register">My Account (Customer)</a>
-                                    <ul class="drop-down one-column hover-fade">
-                                        <li><a href="{{ route('customer.dashboard') }}">Dashboard</a></li>
-                                        <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
-                                    </ul>
-                                </li>
-                            @endif
-                            <form id="logout-form" method="POST" action="{{ route('logout') }}" style="display: none;">
-                                @csrf
-                            </form>
+                                        <li><a href="{{ route('sprovider.services') }}">All services</a></li>
+                                        <li><a href="{{ route('sprovider.add_service') }}">Add service</a></li>
+                                        <li><a href="{{ route('sprovider.availability') }}">Availability</a></li>
+                                        <li><a href="{{ route('sprovider.requests') }}">Service requests</a></li>
+                                        <li><a href="{{ route('messages.index') }}">My messages</a></li>
+                                        <li><a href="{{ route('sprovider.reviews') }}">My reviews</a></li>
+                                        <li><a href="{{ route('sprovider.complaints') }}">Complaints</a></li>
+                                    @else
+                                        <li><a href="javascript:void(0)">Pending approval</a></li>
+                                    @endif
+                                    <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
+                                </ul>
+                            </li>
                         @else
-                            <li class="login-form"> <a href="{{route('register')}}" title="Register">Register</a></li>
-                            <li class="login-form"> <a href="{{route('login')}}" title="Login">Login</a></li>
+                            <li class="login-form"> <a href="#" title="Register">{{ Auth::user()->name }}</a>
+                                <ul class="drop-down one-column hover-fade">
+                                    <li><a href="{{ route('customer.profile') }}">Profile</a></li>
+                                    <li><a href="{{ route('customer.interests') }}">Moji interesi</a></li>
+                                    <li><a href="{{ route('messages.index') }}">My Messages</a></li>
+                                    <li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
+                                </ul>
+                            </li>
+                        @endif
+                        <form id="logout-form" method="POST" action="{{ route('logout') }}" style="display: none;">
+                            @csrf
+                        </form>
+                        <li class="search-bar">
+                        </li>
+                    @else
+                        @if(Route::has('register'))
+                            <li class="login-form"><a href="{{ route('register') }}" title="Register">Register</a></li>
+                        @endif
+                        @if(Route::has('login'))
+                            <li class="login-form"><a href="{{ route('login') }}" title="Login">Login</a></li>
                         @endif
                     @endif
-                    <li class="search-bar">
-                    </li>
                 </ul>
             </nav>
         </header>
         {{ $slot }}
         <footer id="footer" class="footer-v1">
+            @php
+                use App\Models\ServiceCategory;
+
+                $footerCategories = ServiceCategory::orderBy('name')->take(18)->get();
+                $footerChunks = $footerCategories->chunk(6);
+                $footerCol1 = $footerChunks->get(0, collect());
+                $footerCol2 = $footerChunks->get(1, collect());
+                $footerCol3 = $footerChunks->slice(2)->flatten(1);
+            @endphp
             <div class="container">
                 <div class="row visible-md visible-lg">
                     <div class="col-md-3 col-xs-6 col-sm-6">
-                        <h3>APPLIANCE SERVICES </h3>
-                        <ul>
-                            <li><i class="fa fa-check"></i> <a href="servicesbycategory/12.html">TV</a></li>
-                            <li><i class="fa fa-check"></i> <a href="servicesbycategory/14.html">Geyser</a></li>
-                            <li><i class="fa fa-check"></i> <a href="servicesbycategory/13.html">Refrigerator</a></li>
-                            <li><i class="fa fa-check"></i> <a href="servicesbycategory/21.html">Washing Machine</a>
-                            </li>
-                            <li><i class="fa fa-check"></i> <a href="servicesbycategory/22.html">Microwave Oven</a></li>
-                            <li><i class="fa fa-check"></i> <a href="servicesbycategory/10.html">Water Purifier</a></li>
+                        <ul class="footer-cats">
+                            @foreach ($footerCol1 as $cat)
+                                <li><i class="fa fa-check"></i>
+                                    <a href="{{ route('home.services_by_category', ['category_slug' => $cat->slug]) }}">{{ $cat->name }}</a>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                     <div class="col-md-3 col-xs-6 col-sm-6">
-                        <h3>AC SERVICES </h3>
-                        <ul>
-                            <li><i class="fa fa-check"></i> <a
-                                    href="service-details/ac-installation.html">Installation</a></li>
-                            <li><i class="fa fa-check"></i> <a
-                                    href="service-details/ac-uninstallation.html">Uninstallation</a></li>
-                            <li><i class="fa fa-check"></i> <a href="service-details/ac-repair.html">AC Repair</a></li>
-                            <li><i class="fa fa-check"></i> <a href="service-details/ac-gas-refill.html">Gas Refill</a>
-                            </li>
-                            <li><i class="fa fa-check"></i> <a href="service-details/ac-wet-servicing.html">Wet
-                                    Servicing</a></li>
-                            <li><i class="fa fa-check"></i> <a href="service-details/ac-dry-servicing.html">Dry
-                                    Servicing </a></li>
+                        <ul class="footer-cats">
+                            @foreach ($footerCol2 as $cat)
+                                <li><i class="fa fa-check"></i>
+                                    <a href="{{ route('home.services_by_category', ['category_slug' => $cat->slug]) }}">{{ $cat->name }}</a>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                     <div class="col-md-3 col-xs-6 col-sm-6">
-                        <h3>HOME NEEDS </h3>
-                        <ul>
-                            <li><i class="fa fa-check"></i> <a href="servicesbycategory/19.html">Laundry </a></li>
-                            <li><i class="fa fa-check"></i> <a href="servicesbycategory/4.html">Electrical</a></li>
-                            <li><i class="fa fa-check"></i> <a href="servicesbycategory/8.html">Pest Control </a></li>
-                            <li><i class="fa fa-check"></i> <a href="servicesbycategory/7.html">Carpentry </a></li>
-                            <li><i class="fa fa-check"></i> <a href="servicesbycategory/3.html">Plumbing </a></li>
-                            <li><i class="fa fa-check"></i> <a href="servicesbycategory/20.html">Painting </a></li>
+                        <ul class="footer-cats">
+                            @foreach ($footerCol3 as $cat)
+                                <li><i class="fa fa-check"></i>
+                                    <a href="{{ route('home.services_by_category', ['category_slug' => $cat->slug]) }}">{{ $cat->name }}</a>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
-                    <div class="col-md-3 col-xs-6 col-sm-6">
+                    <div class="col-md-3 col-xs-6 col-sm-6 footer-contact">
                         <h3>CONTACT US</h3>
                         <ul class="contact_footer">
                             <li class="location">
-                                <i class="fa fa-map-marker"></i> <a href="#"> Faridabad, Haryana, India</a>
+                                <i class="fa fa-map-marker"></i> <a href="#"> Tutin, Serbia</a>
                             </li>
                             <li>
                                 <i class="fa fa-envelope"></i> <a
-                                    href="mailto:contact@surfsidemedia.in">contact@surfsidemedia.in</a>
+                                    href="mailto:contact@homeservices.rs">contact@homeservices.rs</a>
                             </li>
                             <li>
-                                <i class="fa fa-headphones"></i> <a href="tel:+911234567890">+91-1234567890</a>
+                                <i class="fa fa-headphones"></i> <a href="tel:+3816123456">+3816123456</a>
                             </li>
                         </ul>
                         <h3 style="margin-top: 10px">FOLLOW US</h3>
@@ -228,18 +315,18 @@
                     </div>
                 </div>
                 <div class="row visible-sm visible-xs">
-                    <div class="col-md-6">
+                    <div class="col-md-6 footer-contact">
                         <h3 class="mlist-h">CONTACT US</h3>
                         <ul class="contact_footer mlist">
                             <li class="location">
-                                <i class="fa fa-map-marker"></i> <a href="#"> Faridabad, Haryana, India</a>
+                                <i class="fa fa-map-marker"></i> <a href="#"> Tutin, Serbia</a>
                             </li>
                             <li>
                                 <i class="fa fa-envelope"></i> <a
-                                    href="mailto:contact@surfsidemedia.in">contact@surfsidemedia.in</a>
+                                    href="mailto:contact@surfsidemedia.in">contact@homeservices.rs</a>
                             </li>
                             <li>
-                                <i class="fa fa-phone"></i> <a href="tel:+911234567890">+91-1234567890</a>
+                                <i class="fa fa-phone"></i> <a href="tel:+3816123456">+3816123456</a>
                             </li>
                         </ul>
                         <ul class="social mlist-h">
@@ -255,15 +342,12 @@
                     <div class="row">
                         <div class="col-md-6">
                             <ul class="nav-footer">
-                                <li><a href="about-us.html">About Us</a> </li>
                                 <li><a href="{{route('home.contact')}}">Contact Us</a></li>
-                                <li><a href="faq.html">FAQ</a></li>
-                                <li><a href="terms-of-use.html">Terms of Use</a></li>
-                                <li><a href="privacy.html">Privacy</a></li>
+                                
                             </ul>
                         </div>
                         <div class="col-md-6">
-                            <p class="text-xs-center crtext">&copy; 2021 SurfsideMedia. All Rights Reserved.</p>
+                            <p class="text-xs-center crtext">&copy; 2026 Home Services. All Rights Reserved.</p>
                         </div>
                     </div>
                 </div>                
@@ -293,6 +377,96 @@
     <script type="text/javascript" src="{{ asset('assets/js/validation-rule.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/bootstrap3-typeahead.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/main.js') }}"></script>
+    <script type="text/javascript">
+        function showAlertsAsToasts() {
+            jQuery('.alert').each(function () {
+                var $el = jQuery(this);
+                if ($el.hasClass('no-toast')) {
+                    return;
+                }
+                if (!$el.is(':visible')) {
+                    return;
+                }
+                var msg = $el.text().trim();
+                if (!msg) {
+                    $el.remove();
+                    return;
+                }
+                var type = 'info';
+                if ($el.hasClass('alert-success')) type = 'success';
+                else if ($el.hasClass('alert-danger')) type = 'error';
+                else if ($el.hasClass('alert-warning')) type = 'warning';
+                else if ($el.hasClass('alert-info')) type = 'info';
+                toastr[type](msg);
+                $el.remove();
+            });
+        }
+
+        jQuery(document).ready(function () {
+            toastr.options = {
+                closeButton: true,
+                progressBar: true,
+                positionClass: "toast-top-right",
+                timeOut: 4000
+            };
+            @if(Session::has('toast'))
+                toastr[{{ json_encode(Session::get('toast.type', 'info')) }}](
+                    {{ json_encode(Session::get('toast.message', '')) }}
+                );
+            @endif
+            showAlertsAsToasts();
+        });
+
+        document.addEventListener('livewire:load', function () {
+            if (window.Livewire && Livewire.hook) {
+                Livewire.hook('message.processed', function () {
+                    showAlertsAsToasts();
+                });
+            }
+        });
+
+        document.addEventListener('livewire:initialized', function () {
+            if (window.Livewire && Livewire.hook) {
+                Livewire.hook('commit', function () {
+                    setTimeout(showAlertsAsToasts, 0);
+                });
+            }
+        });
+
+        document.addEventListener('livewire:initialized', function () {
+            if (window.Livewire && Livewire.on) {
+                Livewire.on('toast', function (data) {
+                    var type = (data && data.type) ? data.type : 'info';
+                    var message = (data && data.message) ? data.message : '';
+                    if (message) {
+                        toastr[type](message);
+                    }
+                });
+                Livewire.on('app-redirect', function (data) {
+                    var url = (data && data.url) ? data.url : null;
+                    if (url) {
+                        setTimeout(function () {
+                            window.location.href = url;
+                        }, 1200);
+                    }
+                });
+                Livewire.on('promotion-credits-updated', function (data) {
+                    var credits = (data && data.credits !== undefined) ? parseInt(data.credits, 10) : 0;
+                    if (isNaN(credits)) {
+                        credits = 0;
+                    }
+                    document.querySelectorAll('[data-promotion-credits]').forEach(function (el) {
+                        el.textContent = String(credits);
+                    });
+                });
+            }
+        });
+
+        var alertObserver = new MutationObserver(function () {
+            showAlertsAsToasts();
+        });
+        alertObserver.observe(document.body, { childList: true, subtree: true });
+    </script>
     <script type="text/javascript">
         jQuery(document).ready(function () {
             jQuery('.tp-banner').show().revolution({

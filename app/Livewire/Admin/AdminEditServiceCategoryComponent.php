@@ -4,7 +4,6 @@ namespace App\Livewire\Admin;
 
 use App\Models\ServiceCategory;
 use Livewire\Component;
-use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Livewire\WithFileUploads;
 
@@ -13,7 +12,6 @@ class AdminEditServiceCategoryComponent extends Component
     use WithFileUploads;
     public $category_id;
     public $name;
-    public $slug;
     public $image;
     public $newimage;
     public $featured;
@@ -22,21 +20,14 @@ class AdminEditServiceCategoryComponent extends Component
         $scategory = ServiceCategory::find($category_id);
         $this->category_id = $scategory->id;
         $this->name = $scategory->name;
-        $this->slug = $scategory->slug;
         $this->image = $scategory->image;
         $this->featured = $scategory->featured;
 
     }
-
-    public function generateSlug()
-    {
-        $this->slug = Str::slug($this->name, '-');
-    }
     public function updated($fields)
     {
         $this->validateOnly($fields, [
-            'name' => 'required',
-            'slug' => 'required'
+            'name' => 'required'
         ]);
         if($this->newimage)
         {
@@ -48,8 +39,7 @@ class AdminEditServiceCategoryComponent extends Component
     public function updateServiceCategory()
     {
         $this->validate([
-            'name' => 'required',
-            'slug' => 'required'
+            'name' => 'required'
 
         ]);
         if($this->newimage)
@@ -60,7 +50,6 @@ class AdminEditServiceCategoryComponent extends Component
         }
         $scategory = ServiceCategory::find($this->category_id);
         $scategory->name = $this->name;
-        $scategory->slug = $this->slug;
         if($this->newimage)
         {
             $imageName = Carbon::now()->timestamp . '.' . $this->newimage->extension();

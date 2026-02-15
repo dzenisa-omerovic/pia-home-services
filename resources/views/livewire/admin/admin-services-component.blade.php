@@ -6,17 +6,94 @@
         nav .hidden {
             display: block !important;
         }
+        .admin-pagination {
+            display: flex;
+            justify-content: center;
+            margin: 14px 0 6px;
+            clear: both;
+            width: 100%;
+        }
+        .admin-pager {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #f7f8fb;
+            border-radius: 10px;
+            padding: 8px;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.10);
+        }
+        .admin-pager .btn {
+            min-width: 34px;
+            height: 34px;
+            padding: 0 10px;
+            border: 0;
+            border-radius: 6px;
+            background: transparent;
+            color: #0b3b5b;
+            font-weight: 600;
+        }
+        .admin-pager .btn[disabled] {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        .admin-pager .btn:hover:not([disabled]) {
+            background: #eaf0f6;
+        }
+        .admin-pager .btn.page-btn.active,
+        .admin-pager .btn.page-btn.active:hover,
+        .admin-pager .btn.page-btn.active:focus {
+            background: #0b3b5b;
+            color: #fff;
+            border: 0;
+        }
+        .delete-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(11, 21, 36, 0.55);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1100;
+            padding: 16px;
+        }
+        .delete-modal-card {
+            width: 100%;
+            max-width: 430px;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 20px 45px rgba(0,0,0,0.25);
+        }
+        .delete-modal-head {
+            background: #0b3b5b;
+            color: #fff;
+            padding: 14px 18px;
+            font-size: 16px;
+            font-weight: 700;
+        }
+        .delete-modal-body {
+            padding: 18px;
+            color: #1f2b3a;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .delete-modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            padding: 0 18px 18px;
+        }
     </style>
     <div class="section-title-01 honmob">
         <div class="bg_parallax image_02_parallax"></div>
         <div class="opacy_bg_02">
             <div class="container">
-                <h1>All Services</h1>
+                <h1>All services</h1>
                 <div class="crumbs">
                     <ul>
                         <li><a href="/">Home</a></li>
                         <li>/</li>
-                        <li>All Services</li>
+                        <li>All services</li>
                     </ul>
                 </div>
             </div>
@@ -32,7 +109,7 @@
                                 <div class="panel-heading">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            All Services
+                                            All services
                                         </div>
                                         <div class="col-md-6">
                                             <a href="{{ route('admin.add_service') }}" class="btn btn-info pull-right">Add New</a>
@@ -46,21 +123,19 @@
                                     <table class="table rable-striped">
                                         <thead>
                                             <tr>
-                                                <th>#</th>
                                                 <th>Image</th>
                                                 <th>Name</th>
                                                 <th>Price</th>
                                                 <th>Status</th>
                                                 <th>Featured</th>
                                                 <th>Category</th>
-                                                <th>Created At</th>
+                                                <th>Created at</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($services as $service)
                                                 <tr>
-                                                    <td>{{ $service->id }}</td>
                                                     <td><img src="{{ asset('images/services/thumbnails') }}/{{ $service->thumbnail }}" height="60"/></td>
                                                     <td>{{ $service->name }}</td>
                                                     <td>{{ $service->price }}</td>
@@ -81,14 +156,32 @@
                                                     <td>{{ $service->category->name }}</td>
                                                     <td>{{ $service->created_at }}</td>
                                                     <td>
-                                                        <a href="{{ route('admin.edit_service', ['service_slug' => $service->slug]) }}"><i class="fa fa-edit fa-2x text-info"></i></a>
-                                                        <a href="#" onclick="confirm('Are you sure, you want to delete this service?') || event.stopImmediatePropagation()" wire:click.prevent="deleteService({{$service->id}})" style="margin-left: 10px;"><i class="fa fa-times fa-2x text-danger"></i></a>
+                                                        <a href="{{ route('admin.edit_service', ['service_id' => $service->id]) }}"><i class="fa fa-edit fa-2x text-info"></i></a>
+                                                        <a href="#" wire:click.prevent="openDeleteModal({{ $service->id }})" style="margin-left: 10px;"><i class="fa fa-times fa-2x text-danger"></i></a>
                                                     </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
                                     </table>
-                                    {{ $services->links() }}
+                                    <div class="admin-pagination">
+                                        <div class="admin-pager">
+                                            <button type="button" class="btn btn-default" wire:click="previousPage" @if($services->onFirstPage()) disabled @endif aria-label="Previous page">
+                                                <i class="fa fa-angle-left"></i>
+                                            </button>
+                                            @for($page = 1; $page <= max($services->lastPage(), 1); $page++)
+                                                <button
+                                                    type="button"
+                                                    class="btn btn-default page-btn @if($services->currentPage() === $page) active @endif"
+                                                    wire:click="gotoPage({{ $page }})"
+                                                    aria-label="Page {{ $page }}">
+                                                    {{ $page }}
+                                                </button>
+                                            @endfor
+                                            <button type="button" class="btn btn-default" wire:click="nextPage" @if(!$services->hasMorePages()) disabled @endif aria-label="Next page">
+                                                <i class="fa fa-angle-right"></i>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -97,4 +190,18 @@
             </div>
         </div>
     </section>
+    @if($showDeleteModal)
+        <div class="delete-modal-overlay">
+            <div class="delete-modal-card">
+                <div class="delete-modal-head">Delete Service</div>
+                <div class="delete-modal-body">
+                    Are you sure you want to delete service <strong>{{ $serviceToDeleteName }}</strong>?
+                </div>
+                <div class="delete-modal-actions">
+                    <button type="button" class="btn btn-default" wire:click="cancelDeleteModal">Cancel</button>
+                    <button type="button" class="btn btn-danger" wire:click="confirmDeleteService">Delete</button>
+                </div>
+            </div>
+        </div>
+    @endif
 </div>

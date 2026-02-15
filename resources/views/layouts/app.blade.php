@@ -11,6 +11,9 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+        <!-- Toasts -->
+        <link href="{{ asset('assets/css/toastr.min.css') }}" rel="stylesheet" />
+
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -40,6 +43,21 @@
 
         @stack('modals')
 
+        <script src="{{ asset('assets/js/jquery.js') }}"></script>
+        <script src="{{ asset('assets/js/toastr.min.js') }}"></script>
+        <script>
+            document.addEventListener('livewire:initialized', function () {
+                if (!window.toastr) {
+                    return;
+                }
+                toastr.options = {
+                    closeButton: true,
+                    progressBar: true,
+                    positionClass: "toast-top-right",
+                    timeOut: 4000
+                };
+            });
+        </script>
         @livewireScripts
     </body>
 </html>

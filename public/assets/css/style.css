@@ -3122,6 +3122,167 @@ address strong{
 	margin-top: 25px;
 }
 
+/* Contact page polish -----------------------------------------------*/
+.contact-page .section-title-01{
+	height: 450px;
+}
+.contact-page .section-title-01 h1{
+	padding-top: 120px;
+	font-size: 2.4rem;
+	letter-spacing: 1px;
+}
+.contact-page .section-title-01 .crumbs ul{
+	border-top-color: rgba(255, 255, 255, 0.55);
+}
+.contact-page .paddings-mini{
+	padding: 20px 0 40px;
+}
+.contact-page .semiboxshadow{
+	display: none;
+	position: relative;
+}
+.contact-page .semiboxshadow img{
+	position: relative;
+	margin: 20px auto 0;
+	width: 100%;
+	max-width: 1100px;
+}
+.contact-page #map{
+	display: none;
+	height: 0;
+}
+.contact-page .content_info{
+	background: #f5f6fb;
+}
+.contact-page .contact-lead{
+	margin: 6px 0 18px;
+	color: #6f7285;
+	font-size: 0.95rem;
+}
+.contact-page .contact-intro{
+	margin: 0 0 18px;
+	color: #5e6377;
+	font-size: 1.05rem;
+	text-align: left;
+}
+.contact-page .contact-panel{
+	background: #fff;
+	border: 1px solid #ececf4;
+	border-radius: 12px;
+	padding: 24px 28px;
+	box-shadow: 0 12px 30px rgba(27, 31, 59, 0.08);
+}
+.contact-page .contact-sidebar{
+	background: #fff;
+	border: 1px solid #ececf4;
+	border-radius: 12px;
+	padding: 20px 22px;
+	box-shadow: 0 10px 25px rgba(27, 31, 59, 0.06);
+}
+.contact-page .contact-sidebar hr.tall{
+	margin: 18px 0 0;
+}
+.contact-page .form-theme input,
+.contact-page .form-theme textarea{
+	border-radius: 8px;
+	border-color: #d7d9e6;
+	background: #fbfbff;
+	box-shadow: none;
+}
+.contact-page .form-theme input:focus,
+.contact-page .form-theme textarea:focus{
+	border-color: #7b2a5b;
+	box-shadow: 0 0 0 3px rgba(123, 42, 91, 0.15);
+	outline: none;
+}
+.contact-page .form-theme .btn{
+	border-radius: 8px;
+	background: #7b2a5b;
+}
+.heading-row{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.heading-row .heading-title,
+.heading-row .heading-actions{
+	display: flex;
+	align-items: center;
+}
+.heading-row .heading-actions{
+	justify-content: flex-end;
+}
+.provider-services-preview .img-hover{
+	overflow: hidden;
+}
+.provider-services-preview .img-hover img{
+	display: block;
+	width: 100%;
+	height: auto;
+}
+.provider-services-preview{
+	margin-bottom: 16px;
+}
+.provider-services-preview .provider-card-body{
+	display: flex;
+	flex-direction: column;
+	min-height: 190px;
+}
+.provider-services-preview .provider-card-cta{
+	margin-top: auto;
+}
+.rating-card .rating-summary{
+	display: flex;
+	gap: 12px;
+	margin-bottom: 14px;
+}
+.rating-card .rating-box{
+	flex: 1;
+	background: #f7f9fc;
+	border: 1px solid #e8edf3;
+	border-radius: 8px;
+	padding: 12px 14px;
+	text-align: center;
+}
+.rating-card .rating-label{
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: 0.6px;
+	color: #7a8599;
+}
+.rating-card .rating-value{
+	font-size: 26px;
+	font-weight: 700;
+	color: #0b3b5b;
+}
+.rating-card .rating-bars{
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+.rating-card .rating-row{
+	display: grid;
+	grid-template-columns: 70px 1fr 28px;
+	gap: 10px;
+	align-items: center;
+	font-size: 13px;
+	color: #4b5563;
+}
+.rating-card .rating-track{
+	background: #eef2f6;
+	height: 8px;
+	border-radius: 999px;
+	overflow: hidden;
+}
+.rating-card .rating-fill{
+	height: 100%;
+	background: #1f6aa5;
+}
+.rating-card .rating-count{
+	text-align: right;
+	color: #6b7280;
+}
+
 /* Team Members -------------------------------------------------*/
 .item-team-01{
 	text-align: center;

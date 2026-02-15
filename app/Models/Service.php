@@ -9,6 +9,14 @@ class Service extends Model
 {
     use HasFactory;
     protected $table = "services";
+
+    protected function casts(): array
+    {
+        return [
+            'promoted_until' => 'datetime',
+        ];
+    }
+
     public function category()
     {
         return $this->belongsTo(ServiceCategory::class, 'service_category_id');
@@ -17,5 +25,15 @@ class Service extends Model
     public function serviceProvider()
     {
         return $this->belongsTo(ServiceProvider::class, 'service_provider_id');
+    }
+
+    public function serviceRequests()
+    {
+        return $this->hasMany(ServiceRequest::class, 'service_id');
+    }
+
+    public function serviceReviews()
+    {
+        return $this->hasMany(ServiceReview::class, 'service_id');
     }
 }

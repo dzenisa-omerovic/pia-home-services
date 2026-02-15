@@ -13,7 +13,6 @@ class AdminEditServiceComponent extends Component
 {
     use WithFileUploads;
     public $name;
-    public $slug;
     public $tagline;
     public $service_category_id;
     public $price;
@@ -28,12 +27,12 @@ class AdminEditServiceComponent extends Component
     public $newimage;
     public $service_id;
     public $featured;
-    public function mount($service_slug)
+
+    public function mount($service_id)
     {
-        $service = Service::where('slug', $service_slug)->first();
+        $service = Service::find($service_id);
         $this->service_id = $service->id;
         $this->name = $service->name;
-        $this->slug = $service->slug;
         $this->tagline = $service->tagline;
         $this->service_category_id = $service->service_category_id;
         $this->price = $service->price;
@@ -46,15 +45,10 @@ class AdminEditServiceComponent extends Component
         $this->inclusion = str_replace("|", "\n", $service->inclusion);
         $this->exclusion = str_replace("|", "\n", $service->exclusion);
     }
-    public function generateSlug()
-    {
-        $this->slug = Str::slug($this->name, '-');
-    }
     public function updated($fields)
     {
         $this->validateOnly($fields, [
             'name' => 'required',
-            'slug' => 'required',
             'tagline' => 'required',
             'service_category_id' => 'required',
             'price' => 'required',
@@ -79,7 +73,6 @@ class AdminEditServiceComponent extends Component
     {
         $this->validate([
             'name' => 'required',
-            'slug' => 'required',
             'tagline' => 'required',
             'service_category_id' => 'required',
             'price' => 'required',
@@ -101,7 +94,7 @@ class AdminEditServiceComponent extends Component
         }
         $service = Service::find($this->service_id);
         $service->name = $this->name;
-        $service->slug = $this->slug;
+        $service->slug = Str::slug($this->name, '-');
         $service->tagline = $this->tagline;
         $service->service_category_id = $this->service_category_id;
         $service->price = $this->price;

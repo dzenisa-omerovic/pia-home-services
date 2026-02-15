@@ -26,8 +26,7 @@
                                         <div class="col-md-6">
                                             Update Profile
                                         </div>
-                                        <div class="col-md-6">
-                                            
+                                        <div class="col-md-6 text-right">
                                         </div>
                                     </div>
                                 </div>
@@ -74,29 +73,55 @@
                                                         Service category:
                                                     </label>
                                                     <div class="col-md-9">
-                                                        <select class="form-control" name="service_category_id" wire:model="service_category_id">
+                                                        <select class="form-control" name="service_category_id" wire:model="service_category_id" wire:change="onServiceCategoryChanged($event.target.value)">
+                                                            <option value="">-- Select category --</option>
+                                                            <option value="other">Other (add new)</option>
                                                             @foreach ($scategories as $scategory)
                                                                 <option value="{{ $scategory->id }}">{{ $scategory->name }}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="service_locations" class="control-label col-md-3">
-                                                        Service locations Zipcode/Pincode:
-                                                    </label>
-                                                    <div class="col-md-9">
-                                                        <input type="text" class="form-control" name="service_locations" wire:model="service_locations" />
+                                                @if($service_category_id == 'other')
+                                                    <div class="form-group">
+                                                        <label for="new_category_name" class="control-label col-md-3">
+                                                            New category:
+                                                        </label>
+                                                        <div class="col-md-9">
+                                                            <input type="text" class="form-control" name="new_category_name" wire:model="new_category_name" placeholder="Type new category name"/>
+                                                            @error('new_category_name') <p class="text-danger">{{ $message }}</p> @enderror
+                                                        </div>
                                                     </div>
+                                                @endif
+                                                <div class="text-right">
+                                                    @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
+                                                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#changePasswordModalSprovider">
+                                                            Change Password
+                                                        </button>
+                                                    @endif
+                                                    <button type="submit" class="btn btn-success">Update profile</button>
                                                 </div>
-                                                <button type="submit" class="btn btn-success pull-right">Update profile</button>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
+                                <div class="modal" id="changePasswordModalSprovider" tabindex="-1" role="dialog" aria-labelledby="changePasswordModalSproviderLabel" data-backdrop="false">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title" id="changePasswordModalSproviderLabel">Change Password</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                @livewire('profile.update-password-form')
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
-                    </div>
                 </div>
             </div>
         </div>

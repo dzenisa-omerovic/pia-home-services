@@ -1,5 +1,5 @@
 
-<div>
+<div class="contact-page">
     <div class="section-title-01 honmob">
         <div class="bg_parallax image_02_parallax"></div>
         <div class="opacy_bg_02">
@@ -23,29 +23,32 @@
         <div class="content_info">
             <div class="paddings-mini">
                 <div class="container">
+                    <p class="contact-intro">
+                        
+                    </p>
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-4 contact-sidebar">
                             <aside>
                                 <h4>The Office</h4>
                                 <address>
-                                    <strong>SurfsideMedia Home Services.</strong><br>
-                                    <i class="fa fa-map-marker"></i><strong>Address: </strong>Faridabad, Haryana,
-                                    India<br>
-                                    <i class="fa fa-phone"></i><strong>Phone: </strong> +91-1234567890
+                                    <strong>Home Services</strong><br>
+                                    <i class="fa fa-map-marker"></i><strong>Address: </strong>Tutin, Serbia<br>
+                                    <i class="fa fa-phone"></i><strong>Phone: </strong> +3816123456
                                 </address>
                                 <address>
-                                    <strong>SurfsideMedia Emails</strong><br>
+                                    <strong>Home Services Emails</strong><br>
                                     <i class="fa fa-envelope"></i><strong>Email:</strong><a
-                                        href="mailto:contact@surfsidemedia.in"> contact@surfsidemedia.in</a><br>
+                                        href="mailto:contact@homeservices.rs"> contact@homeservices.rs</a><br>
                                     <i class="fa fa-envelope"></i><strong>Email:</strong><a
-                                        href="mailto:support@surfsidemedia.in"> support@surfsidemedia.in</a>
+                                        href="mailto:support@homeservices.rs"> support@homeservices.rs</a>
                                 </address>
                             </aside>
                             <hr class="tall">
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-8 contact-panel">
                             <h3>Contact Form</h3>
-                            <p class="lead">
+                            <p class="lead contact-lead">
+                                Imate pitanje ili želite ponudu? Pišite nam i javićemo se u najkraćem roku.
                             </p>
                             @if (Session::has('message'))
                                 <div class="alert alert-success" role="alert">{{ Session::get('message') }}</div>

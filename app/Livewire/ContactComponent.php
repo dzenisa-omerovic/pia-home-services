@@ -11,6 +11,7 @@ class ContactComponent extends Component
     public $email;
     public $phone;
     public $message;
+
     public function updated($fields)
     {
         $this->validateOnly($fields, [
@@ -34,7 +35,8 @@ class ContactComponent extends Component
         $contact->phone = $this->phone;
         $contact->message = $this->message;
         $contact->save();
-        session()->flash('message', 'Your message has been submited successfully!');
+        $this->dispatch('toast', type: 'success', message: 'Your message has been sent successfully!');
+        $this->dispatch('app-redirect', url: route('home'));
     }
     public function render()
     {

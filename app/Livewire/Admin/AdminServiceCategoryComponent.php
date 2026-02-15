@@ -9,9 +9,44 @@ use Livewire\WithPagination;
 class AdminServiceCategoryComponent extends Component
 {
     use WithPagination;
+    public $showDeleteModal = false;
+    public $categoryToDeleteId = null;
+    public $categoryToDeleteName = '';
+
+    public function openDeleteModal($id)
+    {
+        $scategory = ServiceCategory::find($id);
+        if(!$scategory) {
+            return;
+        }
+
+        $this->categoryToDeleteId = $scategory->id;
+        $this->categoryToDeleteName = $scategory->name;
+        $this->showDeleteModal = true;
+    }
+
+    public function cancelDeleteModal()
+    {
+        $this->showDeleteModal = false;
+        $this->categoryToDeleteId = null;
+        $this->categoryToDeleteName = '';
+    }
+
+    public function confirmDeleteCategory()
+    {
+        if($this->categoryToDeleteId) {
+            $this->deleteServiceCategory($this->categoryToDeleteId);
+        }
+        $this->cancelDeleteModal();
+    }
+
     public function deleteServiceCategory($id)
     {
         $scategory = ServiceCategory::find($id);
+        if(!$scategory) {
+            return;
+        }
+
         if($scategory->image)
         {
             unlink('images/categories' . '/' . $scategory->image);
@@ -22,7 +57,8 @@ class AdminServiceCategoryComponent extends Component
     }
     public function render()
     {
-        $scategories = ServiceCategory::paginate(10);
+        $scategories = ServiceCategory::withCount('serviceRequests')
+            ->paginate(10);
         return view('livewire.admin.admin-service-category-component', ['scategories'=>$scategories])->layout('layouts.base');
     }
 }

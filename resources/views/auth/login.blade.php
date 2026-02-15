@@ -72,6 +72,37 @@
                         <div class="col-xs-12 col-sm-6 col-md-6 profile1" style="min-height: 300px;">
                             <div class="thinborder-ontop">
                                 <h3>Login Info</h3>
+                                @php
+                                    $statusMessages = [
+                                        'required' => 'Morate biti ulogovani da biste nastavili.',
+                                        'loginRequired' => 'Morate biti ulogovani da biste nastavili.',
+                                        'contactLoginRequired' => 'Morate biti ulogovani da biste pristupili Contact Us stranici.',
+                                        'loginRequiredProvider' => 'Morate biti ulogovani da biste videli detalje provajdera.',
+                                        'loginRequiredService' => 'Morate biti ulogovani da biste videli servis.',
+                                        'loginRequiredCategory' => 'Morate biti ulogovani da biste videli servise ove kategorije.',
+                                        'customerLoginRequired' => 'Morate biti ulogovani kao korisnik da biste rezervisali servis.',
+                                        'providerApprovalPending' => 'Registracija servis provajdera je na cekanju. Sacekajte odobrenje administratora.',
+                                        'providerRejected' => 'Vasa registracija servis provajdera je odbijena. Kontaktirajte administratora.'
+                                    ];
+                                    $status = request('status');
+                                    $statusToastMessage = ($status && isset($statusMessages[$status])) ? $statusMessages[$status] : null;
+                                @endphp
+                                @if($statusToastMessage)
+                                    @push('scripts')
+                                        <script type="text/javascript">
+                                            (function showStatusToast() {
+                                                if (window.toastr) {
+                                                    toastr.warning(@json($statusToastMessage));
+                                                    return;
+                                                }
+                                                setTimeout(showStatusToast, 100);
+                                            })();
+                                        </script>
+                                    @endpush
+                                @endif
+                                @if(Session::has('message'))
+                                    <div class="alert alert-warning" role="alert">{{ Session::get('message') }}</div>
+                                @endif
                                 <x-validation-errors class="mb-4" />
                                 <form id="userloginform" method="POST" action="{{ route('login') }}">  
                                     @csrf                                      
@@ -89,13 +120,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col-md-6">
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" id="remember_me" name="remember"> Remember Me </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-10">
                                             <button type="submit" class="btn btn-primary pull-right">Login</button>
                                         </div>
                                     </div>

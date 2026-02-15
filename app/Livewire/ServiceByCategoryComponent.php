@@ -10,6 +10,10 @@ class ServiceByCategoryComponent extends Component
     public $category_slug;
     public function mount($category_slug)
     {
+        if (!auth()->check()) {
+            session(['url.intended' => url()->current()]);
+            return redirect()->route('login', ['status' => 'loginRequiredCategory']);
+        }
         $this->category_slug = $category_slug;
     }
     public function render()

@@ -53,7 +53,7 @@
                         </div>
                         @endforeach
                         @else
-                        <div class="col-md-12"><p class="text-center">There is any services.</p></div>
+                        <div class="col-md-12"><p class="text-center">There are no services.</p></div>
                         @endif
                     </div>
                 </div>

@@ -46,18 +46,16 @@
                                     <table class="table rable-striped">
                                         <thead>
                                             <tr>
-                                                <th>#</th>
                                                 <th>Name</th>
                                                 <th>Email</th>
                                                 <th>Phone</th>
                                                 <th>Message</th>
-                                                <th>Created At</th>
+                                                <th>Created at</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($contacts as $contact)
                                                 <tr>
-                                                    <td>{{ $contact->id }}</td>
                                                     <td>{{ $contact->name }}</td>
                                                     <td>{{ $contact->email }}</td>
                                                     <td>{{ $contact->phone }}</td>

@@ -40,15 +40,8 @@
                                         <div class="form-group">
                                             <label for="name" class="control-label col-sm-3">Category Name: </label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" name="name" wire:model="name" wire:keyup="generateSlug"/>
+                                                <input type="text" class="form-control" name="name" wire:model="name"/>
                                                 @error('name') <p class="text-danger">{{ $message }}</p> @enderror
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="slug" class="control-label col-sm-3">Category Slug: </label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" name="slug" wire:model="slug"/>
-                                                @error('slug') <p class="text-danger">{{ $message }}</p> @enderror
                                             </div>
                                         </div>
                                         <div class="form-group">

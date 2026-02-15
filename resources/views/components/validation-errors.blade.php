@@ -1,8 +1,7 @@
 @if ($errors->any())
-    <div {{ $attributes }}>
-        <div class="font-medium text-red-600">{{ __('Whoops! Something went wrong.') }}</div>
-
-        <ul class="mt-3 list-disc list-inside text-sm text-red-600">
+    <div class="alert alert-danger" role="alert">
+        <div><strong>{{ __('Whoops! Something went wrong.') }}</strong></div>
+        <ul style="margin: 6px 0 0 16px;">
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
             @endforeach

@@ -22,12 +22,12 @@
                         <div class="col-md-8 col-md-offset-2 profile1">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <div class="row">
-                                        <div class="col-md-6">
+                                    <div class="row heading-row">
+                                        <div class="col-md-6 heading-title">
                                             Edit Service
                                         </div>
-                                        <div class="col-md-6">
-                                            <a href="{{ route('sprovider.services') }}" class="btn btn-info pull-right">All Services</a>
+                                        <div class="col-md-6 heading-actions">
+                                            <a href="{{ route('sprovider.services') }}" class="btn btn-info">All services</a>
                                         </div>
                                     </div>
                                 </div>

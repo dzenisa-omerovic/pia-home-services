@@ -5,6 +5,7 @@ use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use App\Http\Middleware\AuthAdmin;
 use App\Http\Middleware\AuthSprovider;
+use App\Http\Middleware\EnsureContactAccess;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -17,6 +18,7 @@ return Application::configure(basePath: dirname(__DIR__))
          $middleware->alias([
             'authadmin'    => AuthAdmin::class,
             'authsprovider' => AuthSprovider::class,
+            'contact.access' => EnsureContactAccess::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

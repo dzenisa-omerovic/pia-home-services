@@ -100,6 +100,7 @@ class SproviderAddServiceComponent extends Component
 
         $service->save();
         session()->flash('message', 'Service has been created successfully!');
+        return redirect()->route('home.service_details', ['service_slug' => $service->slug]);
     }
 
     public function render()

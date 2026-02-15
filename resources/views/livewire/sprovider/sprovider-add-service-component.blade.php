@@ -23,12 +23,12 @@
                         <div class="col-md-8 col-md-offset-2 profile1">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <div class="row">
-                                        <div class="col-md-6">
+                                    <div class="row heading-row">
+                                        <div class="col-md-6 heading-title">
                                             Add New Service
                                         </div>
-                                        <div class="col-md-6">
-                                            <a href="{{ route('sprovider.services') }}" class="btn btn-info pull-right">All Services</a>
+                                        <div class="col-md-6 heading-actions">
+                                            <a href="{{ route('sprovider.services') }}" class="btn btn-info">All services</a>
                                         </div>
                                     </div>
                                 </div>
@@ -52,13 +52,7 @@
                                                 @error('name') <p class="text-danger">{{ $message }}</p> @enderror
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="slug" class="control-label col-sm-3">Slug: </label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" name="slug" wire:model="slug"/>
-                                                @error('slug') <p class="text-danger">{{ $message }}</p> @enderror
-                                            </div>
-                                        </div>
+                                        <input type="hidden" name="slug" wire:model="slug"/>
                                         <div class="form-group">
                                             <label for="tagline" class="control-label col-sm-3">Tagline: </label>
                                             <div class="col-sm-9">
