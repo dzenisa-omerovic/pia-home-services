@@ -180,21 +180,6 @@
             display: block;
             border-radius: 8px;
         }
-        .popular-services-grid .hsgrids {
-            display: flex;
-        }
-        .popular-services-grid .g-list {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            height: 100%;
-        }
-        .popular-services-grid .info-gallery {
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-            min-height: 250px;
-        }
         .popular-services-grid .info-gallery h3 {
             line-height: 1.3;
             min-height: 2.6em;
@@ -210,6 +195,9 @@
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
+        }
+        .popular-services-grid .info-gallery {
+            height: 270px;
         }
 
     </style>
