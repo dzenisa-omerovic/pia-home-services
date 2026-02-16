@@ -129,7 +129,7 @@
                 <div class="categories-spacer"></div>
                 <div class="row">
                     <div class="col-md-12">
-                        <ul class="services-lines full-services">
+                        <ul class="services-lines full-services category-tile-grid">
                             @foreach($scategories as $scategory)
                                 <li>
                                     <div class="item-service-line">

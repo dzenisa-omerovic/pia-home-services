@@ -1,4 +1,4 @@
-﻿@charset "utf-8";
+@charset "utf-8";
 
 /* ============================== 
 	- Template Name: Surfside Media Home Services.
@@ -4272,4 +4272,88 @@ i.fa-truck {
 	color: red;
 	font-weight: 300;
 	font-size: 13px;
+}
+
+/* Uniform category cards */
+.category-tile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 16px;
+    width: 100% !important;
+    overflow: visible;
+    margin: 0;
+    padding: 0;
+}
+.category-tile-grid li {
+    float: none !important;
+    width: auto !important;
+    list-style: none;
+    background: transparent;
+}
+.category-tile-grid li .item-service-line {
+    min-height: 170px;
+    padding: 16px 12px;
+    border: 1px solid #e9edf4;
+    border-radius: 12px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: box-shadow .2s ease, transform .2s ease;
+}
+.category-tile-grid li .item-service-line i {
+    width: 88px;
+    height: 88px;
+    padding: 0;
+    margin: 0;
+    line-height: normal;
+    font-size: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #f4f7fc;
+}
+.category-tile-grid li .item-service-line .icon-img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+.category-tile-grid li h5 {
+    margin: 0;
+    min-height: 2.6em;
+    line-height: 1.3;
+    font-size: 14px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.category-tile-grid li:hover i,
+.category-tile-grid li:hover h5 {
+    transform: none !important;
+}
+.category-tile-grid li:hover .item-service-line {
+    box-shadow: 0 10px 24px rgba(9, 35, 66, 0.12);
+    transform: translateY(-2px);
+}
+@media (max-width: 575px) {
+    .category-tile-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+    .category-tile-grid li .item-service-line {
+        min-height: 150px;
+    }
+    .category-tile-grid li .item-service-line i {
+        width: 74px;
+        height: 74px;
+    }
 }

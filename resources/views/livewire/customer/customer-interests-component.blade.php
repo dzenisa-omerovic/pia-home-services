@@ -31,7 +31,7 @@
                     @if($interests->count() === 0)
                         <p class="text-center">Nema izabranih kategorija.</p>
                     @else
-                        <ul class="services-lines full-services">
+                        <ul class="services-lines full-services category-tile-grid">
                             @foreach($interests as $interest)
                                 <li>
                                     <div class="item-service-line">
