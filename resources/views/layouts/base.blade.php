@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="{{ asset('assets/img/favicon.png') }}">
+    <link rel="icon" href="{{ asset('favicon.ico') }}">
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" media="screen">
     <link href="{{ asset('assets/css/chblue.css') }}" rel="stylesheet" media="screen">
     <link href="{{ asset('assets/css/theme-responsive.css') }}" rel="stylesheet" media="screen">
@@ -165,7 +165,7 @@
 
                 <ul class="collapse">
                     <li class="title">
-                        <a href="/"><img src="{{ asset('images/logo1.png') }}"></a>
+                        <a href="/"><img src="{{ asset('assets/img/logo1.png') }}"></a>
                     </li>
                     @auth
                         @if(Auth::user()->utype !== 'ADM')
