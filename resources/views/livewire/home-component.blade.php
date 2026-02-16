@@ -121,6 +121,96 @@
             align-items: center;
             text-align: center;
         }
+        #sponsors {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px;
+            padding: 8px 0;
+        }
+        #sponsors li {
+            width: 72px;
+            height: 72px;
+            flex: 0 0 72px;
+        }
+        #sponsors li a {
+            width: 72px;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 1px solid #e8edf3;
+            border-radius: 10px;
+            background: #fff;
+        }
+        #sponsors li a img {
+            width: 72px !important;
+            height: 72px !important;
+            max-width: 72px !important;
+            max-height: 72px !important;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+        .content_info .services-lines li .item-service-line {
+            min-height: 132px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .content_info .services-lines li .item-service-line i.fa {
+            width: 56px !important;
+            height: 56px !important;
+            line-height: 56px !important;
+            padding: 0 !important;
+            margin: 0 auto 8px auto;
+            display: block !important;
+            overflow: hidden;
+            font-size: 0 !important;
+        }
+        .content_info .services-lines li .item-service-line .icon-img {
+            width: 56px !important;
+            height: 56px !important;
+            max-width: 56px !important;
+            max-height: 56px !important;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            border-radius: 8px;
+        }
+        .popular-services-grid .hsgrids {
+            display: flex;
+        }
+        .popular-services-grid .g-list {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+        }
+        .popular-services-grid .info-gallery {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-height: 250px;
+        }
+        .popular-services-grid .info-gallery h3 {
+            line-height: 1.3;
+            min-height: 2.6em;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .popular-services-grid .info-gallery p {
+            line-height: 1.4;
+            min-height: 2.8em;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
 
     </style>
     <section class="tp-banner-container">
@@ -208,7 +298,7 @@
                             @foreach ($scategories as $scategory)
                                 <li data-toggle="tooltip" title="" data-original-title="{{ $scategory->name }}">
                                     <a href="{{route('home.services_by_category', ['category_slug' => $scategory->slug])}}">
-                                        <img src="{{ asset('images/categories') }}/{{ $scategory->image }}" alt="{{ $scategory->name }}">
+                                        <img src="{{ asset('images/categories') }}/{{ $scategory->image }}" alt="{{ $scategory->name }}" loading="lazy">
                                     </a>
                                 </li>
                             @endforeach
@@ -230,7 +320,7 @@
                             <hr class="tall">
                         </div>
                     </div>
-                    <div class="portfolioContainer latest-services" style="margin-top: -50px; margin-bottom: 72px;">
+                    <div class="portfolioContainer latest-services popular-services-grid" style="margin-top: -50px; margin-bottom: 72px;">
                         @foreach ($popularServices as $service)
                         <div class="col-xs-6 col-sm-4 col-md-3 hsgrids"
                             style="padding-right: 5px;padding-left: 5px;">
@@ -284,7 +374,8 @@
                                     <a href="{{route('home.services_by_category', ['category_slug' => $fscategory->slug])}}">
                                         <div class="item-service-line">
                                             <i class="fa"><img class="icon-img"
-                                                    src="{{ asset('images/categories') }}/{{ $fscategory->image }}"></i>
+                                                    src="{{ asset('images/categories') }}/{{ $fscategory->image }}"
+                                                    alt="{{ $fscategory->name }}" loading="lazy"></i>
                                             <h5>{{ $fscategory->name }}</h5>
                                         </div>
                                     </a>
