@@ -71,9 +71,7 @@
                                         <div class="col-md-6">
                                             {{$category_name}} Services
                                         </div>
-                                        <div class="col-md-6">
-                                            <a href="#" class="btn btn-info pull-right">Add New</a>
-                                        </div>
+\                                        <div class="col-md-6"></div>
                                     </div>
                                 </div>
                                 <div class="panel-body">
@@ -116,8 +114,7 @@
                                                     <td>{{ $service->category->name }}</td>
                                                     <td>{{ $service->created_at }}</td>
                                                     <td>
-                                                        <a href="{{ route('admin.edit_service', ['service_id' => $service->id]) }}"><i class="fa fa-edit fa-2x text-info"></i></a>
-                                                        <a href="#" wire:click.prevent="openDeleteModal({{ $service->id }})" style="margin-left: 10px;"><i class="fa fa-times fa-2x text-danger"></i></a>
+                                                        <a href="#" wire:click.prevent="openDeleteModal({{ $service->id }})"><i class="fa fa-times fa-2x text-danger"></i></a>
                                                     </td>
                                                 </tr>
                                             @endforeach

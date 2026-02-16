@@ -149,8 +149,10 @@
                                                     <td>{{ ucfirst($sprovider->approval_status ?? 'pending') }}</td>
                                                     <td>
                                                         @if(($sprovider->approval_status ?? 'pending') === 'pending')
-                                                            <a href="#" wire:click.prevent="approve({{ $sprovider->id }})" class="btn btn-xs btn-success">Approve</a>
-                                                            <a href="#" wire:click.prevent="reject({{ $sprovider->id }})" class="btn btn-xs btn-danger" style="margin-left: 6px;">Reject</a>
+                                                            <div class="d-flex align-items-center" style="gap: 8px;">
+                                                                <a href="#" wire:click.prevent="approve({{ $sprovider->id }})" class="btn btn-xs btn-success" style="min-width: 78px; text-align: center;">Approve</a>
+                                                                <a href="#" wire:click.prevent="reject({{ $sprovider->id }})" class="btn btn-xs btn-danger" style="min-width: 78px; text-align: center;">Reject</a>
+                                                            </div>
                                                         @elseif($sprovider->approval_status === 'approved')
                                                             <span class="text-success">Approved</span>
                                                         @else
@@ -207,3 +209,4 @@
         </div>
     @endif
 </div>
+

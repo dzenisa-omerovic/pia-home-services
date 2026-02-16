@@ -120,8 +120,7 @@ class SproviderServiceRequestsComponent extends Component
 
             foreach ($overlaps as $overlap) {
                 $overlap->status = 'rejected';
-                $overlap->save();
-                $this->notifyCustomer($overlap, 'rejected');
+                $overlap->save();      
             }
         }
 
@@ -139,8 +138,7 @@ class SproviderServiceRequestsComponent extends Component
         $request->status = 'accepted';
         $request->save();
 
-        $this->createBlockingExceptionForRequest($request);
-        $this->notifyCustomer($request, 'accepted');
+        $this->createBlockingExceptionForRequest($request); 
     }
 
     protected function createBlockingExceptionForRequest(ServiceRequest $request)
@@ -179,7 +177,7 @@ class SproviderServiceRequestsComponent extends Component
 
         $request->status = 'rejected';
         $request->save();
-        $this->notifyCustomer($request, 'rejected');
+        
         session()->flash('message', 'Request rejected.');
     }
 
@@ -207,7 +205,6 @@ class SproviderServiceRequestsComponent extends Component
         $sprovider->save();
         $this->dispatch('promotion-credits-updated', credits: (int) $sprovider->promotion_credits);
 
-        $this->notifyCustomer($request, 'completed');
         $message = 'Request marked as completed.';
         if ($awardedCredit) {
             $message .= ' You earned 1 free promotion credit.';
@@ -215,24 +212,7 @@ class SproviderServiceRequestsComponent extends Component
         session()->flash('message', $message);
     }
 
-    protected function notifyCustomer(ServiceRequest $request, string $status)
-    {
-        $user = $request->customer;
-        if (!$user || !$user->email) {
-            return;
-        }
-
-        $subject = 'Service request ' . $status;
-        $body = 'Your request #' . $request->id . ' has been ' . $status . '.';
-        try {
-            Mail::raw($body, function ($message) use ($user, $subject) {
-                $message->to($user->email)
-                    ->subject($subject);
-            });
-        } catch (\Throwable $e) {
-            // Mail is optional; ignore errors if not configured.
-        }
-    }
+    
 
     public function render()
     {
